@@ -1,0 +1,68 @@
+---
+title: "Homework 1"
+author: "Hung Nguyen (8215071)"
+date: "10/2/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+install.packages("tidyverse", repos = "http://cran.us.r-project.org")
+library(tidyverse)
+install.packages("corrplot", repos = "http://cran.us.r-project.org")
+library(corrplot)
+```
+
+Question 1.
+Supervised learning: for each predictor variable, there is an associate response variable and we wish to fit a model that relates the response to the predictors, with the aim of accurately predicting the response for future observations or better understanding the relationship between the response and predictors.
+Unsupervised learning: for every observation, we observe a vector of measurements, but no associated response.
+The difference is that for unsupervised learning, there is no response variable to predict.
+
+Question 2.
+A regression model has quantitative response variable while a classification model has qualitative response variables.
+
+Question 3.
+For regression models, the mean squared error and the mean absolute error are common metrics.
+For classification models, Bayes classifier and the K-nearest neighbors are common metrics.
+
+Question 4.
+Descriptive models: provide insight to events in the past
+Inferential models: provide understanding of the association between the predictors and response variable
+Predictive models: use provided data to predict an event in the future
+
+Question 5.
+Mechanistic model: uses theory to predict what will happen in the real world
+Empirically-driven model: studies real-world events to develop a theory
+A mechanistic model uses observed data to predict what may happen while an empirically-driven model learns by experimenting. The model uses data through experiments to form a statistical prediction. So both models predict something from data collected but the way data is collected is different.
+An empirically-driven model is easier to understand because the data collected is gathered through experiments and empirical observations. Thus, a more reasonable prediction can be made.
+A mechanistic model would have higher bias as bias refers to the error that is introduced by approximating a real-life problem by a simpler problem. Thus, by using theory to simplify and predict a real-life event, the bias would increase.
+An empirically-drive model would have higher variance because by conducting experiments to collect empirical data and predict something, other training data sets may have result in large changes in the response.
+
+Question 6.
+  1. Predictive because we are predicting the voters' decision according to their profile and data.
+  2. Inferential because we are attempting to understand how a voter's profile will affect his/her decision.
+  
+EXPLORATORY DATA ANALYSIS
+
+Exercise 1.
+```{r}
+ggplot(mpg, aes(hwy)) + geom_histogram(binwidth=1, fill="red", col="black") + ggtitle("Histogram of Highway MPG") + xlab("Highway MPG") + ylab("Frequency")
+```
+The histogram shows that most vehicles can either travel 26 miles or 17 miles for every gallon of gas on the highway. No vehicle travels 13, 38, 39, 40, 42, 43 miles for every gallon it has.
+
+Exercise 2.
+```{r}
+ggplot(mpg, aes(x=hwy, y=cty)) + geom_point(size=2, col="blue") + xlab("Highway Mileage") + ylab("City Mileage")
+```
+There is a linear relationship between city mileage and highway mileage.
+
+Exercise 3.
+```{r}
+ggplot(mpg, aes(x=reorder(manufacturer, manufacturer, function(x) length(x)))) + geom_bar(width=0.5) + coord_flip()
+```
+Dodge produced the most cars while Lincoln produced the least.
+
+
